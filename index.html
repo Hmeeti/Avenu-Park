@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Park Avenue Hotel &amp; Cafe — Меню</title>
+<meta name="description" content="Электронное меню Park Avenue Hotel &amp; Cafe в Таразе: завтраки, салаты, горячие блюда, пицца, суши, кофе и напитки. Цены в тенге, на русском, казахском и английском языках.">
+<meta name="theme-color" content="#F6EFE2" id="themeColor">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Park Avenue Hotel &amp; Cafe">
+<meta property="og:title" content="Park Avenue Hotel &amp; Cafe — Меню">
+<meta property="og:description" content="Электронное меню кафе при отеле Park Avenue: блюда, напитки и цены.">
+<meta property="og:image" content="https://hmeeti.github.io/Avenu-Park/assets/icons/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="./assets/icons/favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Park Avenue">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;family=Manrope:wght@400..700&amp;display=swap&amp;subset=cyrillic,cyrillic-ext,latin" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;family=Manrope:wght@400..700&amp;display=swap"></noscript>
+<link rel="stylesheet" href="./css/styles.css">
+
+<script>
+  /* Ранняя установка темы и языка — чтобы не было «вспышки» не той темы. */
+  (function () {
+    var d = document.documentElement, theme = null, lang = 'ru';
+    try {
+      theme = JSON.parse(localStorage.getItem('pa_theme'));
+      lang = JSON.parse(localStorage.getItem('pa_lang')) || 'ru';
+    } catch (e) {}
+    if (theme !== 'light' && theme !== 'dark') {
+      theme = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    d.setAttribute('data-theme', theme);
+    if (lang === 'kk' || lang === 'en') d.setAttribute('lang', lang);
+    document.getElementById('themeColor').setAttribute('content', theme === 'dark' ? '#1E2117' : '#F6EFE2');
+    /* Манифест подключаем только по http(s): при открытии файла с диска браузер ругается в консоль. */
+    if (/^https?:$/.test(location.protocol)) {
+      var m = document.createElement('link');
+      m.rel = 'manifest';
+      m.href = './manifest.webmanifest';
+      document.head.appendChild(m);
+    }
+  })();
+</script>
+<script defer src="./data/config.js"></script>
+<script defer src="./data/menu.js"></script>
+<script defer src="./js/i18n.js"></script>
+<script defer src="./js/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#menu" data-i18n="skip">Перейти к меню</a>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.5" fill="currentColor"/><circle cx="4.5" cy="12" r="1.5" fill="currentColor"/><circle cx="4.5" cy="18" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8h6M9 12h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6V9ZM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m11 12 8-8M16 7l2 2M14 9l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="topbar" id="topbar">
+  <div class="topbar__inner">
+    <a class="topbar__brand" href="#top" aria-label="Park Avenue Hotel &amp; Cafe" tabindex="-1">
+      <img class="topbar__emblem" src="./assets/logo/logo-emblem-160.png" alt="" width="36" height="36">
+      <img class="topbar__wordmark" src="./assets/logo/logo-park-avenue-text-320.png" alt="" width="98" height="15">
+    </a>
+    <div class="topbar__actions">
+      <div class="lang" id="lang">
+        <button type="button" class="icon-btn lang__toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Язык: RU">
+          <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+          <span class="lang__code" id="langCode">RU</span>
+        </button>
+        <div class="lang__menu" id="langMenu" hidden>
+          <button type="button" class="lang__opt" data-lang="ru" lang="ru">Русский</button>
+          <button type="button" class="lang__opt" data-lang="kk" lang="kk">Қазақша</button>
+          <button type="button" class="lang__opt" data-lang="en" lang="en">English</button>
+        </div>
+      </div>
+      <button type="button" class="icon-btn" id="themeBtn" aria-label="Тема">
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <button type="button" class="icon-btn" data-open="info" data-i18n-aria="info" aria-label="Информация">
+        <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <h1 class="hero__logo">
+    <img src="./assets/logo/logo-full-3d-480.png" alt="Park Avenue Hotel &amp; Cafe" width="240" height="201" fetchpriority="high">
+  </h1>
+  <p class="hero__title" id="welcomeTitle">Добро пожаловать в Park Avenue</p>
+  <p class="hero__text" id="welcomeText">Park Avenue — это место, где встречаются уютная атмосфера, безупречный сервис и блюда, приготовленные с любовью. Мы стремимся сделать каждый ваш визит особенным и наполнить его приятными впечатлениями. Желаем вам прекрасного отдыха и приятного аппетита!</p>
+  <ul class="hero__facts" id="heroFacts"><li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Ежедневно 08:00–01:00</li><li><svg class="icon" aria-hidden="true"><use href="#i-receipt"/></svg>Обслуживание 15%</li></ul>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="#menu" id="heroMenuBtn" data-i18n="menu">Меню</a>
+    <button type="button" class="btn btn--ghost" data-open="info" data-i18n="info">Информация</button>
+  </div>
+</section>
+
+<main class="menu" id="menu" tabindex="-1">
+  <div class="menu-nav" id="menuNav">
+    <div class="menu-nav__row" id="navRow">
+      <div class="segment" role="group" data-i18n-aria="group_label" aria-label="Кухня или бар">
+        <button type="button" class="segment__btn" data-group="kitchen" aria-pressed="true" data-i18n="kitchen">Кухня</button>
+        <button type="button" class="segment__btn" data-group="bar" aria-pressed="false" data-i18n="bar">Бар</button>
+      </div>
+      <button type="button" class="icon-btn icon-btn--soft" id="searchOpen" aria-expanded="false" aria-controls="searchRow" data-i18n-aria="search" aria-label="Поиск">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+      </button>
+      <button type="button" class="pill-btn" data-open="sections" id="sectionsBtn">
+        <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>
+        <span class="pill-btn__text" data-i18n="sections">Разделы</span>
+      </button>
+    </div>
+    <div class="search" id="searchRow" hidden>
+      <div class="search__field">
+        <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input class="search__input" id="searchInput" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" spellcheck="false" data-i18n-ph="search_ph" data-i18n-aria="search" aria-label="Поиск" placeholder="Поиск">
+        <button type="button" class="search__clear" id="searchClear" data-i18n-aria="search_clear" aria-label="Очистить поиск" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+      <button type="button" class="search__cancel" id="searchCancel" data-i18n="cancel">Отмена</button>
+    </div>
+    <nav class="chips" id="chips" data-i18n-aria="sections_nav" aria-label="Разделы меню"></nav>
+  </div>
+
+  <p class="menu__service" id="serviceNote">Обслуживание 15% добавляется к счёту</p>
+  <div class="menu__list" id="menuList"></div>
+  <div class="menu__results" id="searchResults" aria-live="polite" hidden></div>
+  <p class="menu__allergy" id="menuAllergy"></p>
+</main>
+
+<footer class="footer" id="footer">
+  <img class="footer__logo" src="./assets/logo/logo-full-flat-240.png" alt="Park Avenue Hotel &amp; Cafe" width="120" height="125" loading="lazy" decoding="async">
+  <ul class="footer__links" id="footerLinks"></ul>
+  <p class="footer__hours" id="footerHours"></p>
+  <p class="footer__copy" id="footerCopy"></p>
+</footer>
+
+<noscript><p class="noscript">Для работы меню включите JavaScript.</p></noscript>
+
+<button type="button" class="billbar" id="billBar" hidden data-open="bill">
+  <svg class="icon" aria-hidden="true"><use href="#i-receipt"/></svg>
+  <span class="billbar__label" data-i18n="bill">Счёт</span>
+  <span class="billbar__count" id="billBarCount"></span>
+  <strong class="billbar__sum" id="billBarSum"></strong>
+</button>
+
+<button type="button" class="to-top" id="toTop" data-i18n-aria="to_top" aria-label="Наверх" hidden>
+  <svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>
+</button>
+
+<div class="sheet" id="sheet-dish" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="dishTitle" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="dishTitle"></h2>
+      <button type="button" class="icon-btn icon-btn--soft" data-close data-i18n-aria="close" aria-label="Закрыть"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body" id="dishBody"></div>
+    <div class="sheet__foot" id="dishFoot"></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet-bill" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="billTitle" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="billTitle" data-i18n="bill">Счёт</h2>
+      <button type="button" class="icon-btn icon-btn--soft" data-close data-i18n-aria="close" aria-label="Закрыть"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body">
+      <div class="bill__meta">
+        <label class="field">
+          <span class="field__label" data-i18n="table">Стол №</span>
+          <input class="field__input" id="billTable" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" placeholder="—">
+        </label>
+        <button type="button" class="field field--btn" id="waiterBtn" data-open="waiter" hidden>
+          <span class="field__label" data-i18n="waiter">Официант</span>
+          <span class="field__value" id="waiterValue"></span>
+          <svg class="icon field__chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+      </div>
+      <ul class="bill__lines" id="billLines"></ul>
+      <p class="bill__empty" id="billEmpty" data-i18n="bill_empty"></p>
+      <div id="billSummary">
+        <dl class="bill__totals" id="billTotals" aria-live="polite"></dl>
+        <div class="split" id="billSplit"></div>
+      </div>
+      <p class="bill__note" data-i18n="bill_disclaimer"></p>
+      <p class="bill__note bill__note--allergy" id="billAllergy"></p>
+    </div>
+    <div class="sheet__foot">
+      <button type="button" class="btn btn--danger btn--block" id="billClear" data-i18n="clear_bill">Очистить счёт</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet-sections" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sectionsTitle" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="sectionsTitle" data-i18n="sections">Разделы</h2>
+      <button type="button" class="icon-btn icon-btn--soft" data-close data-i18n-aria="close" aria-label="Закрыть"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body" id="sectionsBody"></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet-info" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="infoTitle" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="infoTitle" data-i18n="info">Информация</h2>
+      <button type="button" class="icon-btn icon-btn--soft" data-close data-i18n-aria="close" aria-label="Закрыть"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body" id="infoBody"></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet-waiter" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel sheet__panel--small" role="dialog" aria-modal="true" aria-labelledby="waiterTitle" tabindex="-1">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="waiterTitle" data-i18n="choose_waiter">Выбрать официанта</h2>
+      <button type="button" class="icon-btn icon-btn--soft" data-close data-i18n-aria="close" aria-label="Закрыть"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body" id="waiterBody"></div>
+  </div>
+</div>
+
+<div class="sheet sheet--center" id="sheet-confirm" hidden>
+  <div class="sheet__backdrop" data-close></div>
+  <div class="sheet__panel sheet__panel--small" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmText" tabindex="-1">
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="confirmTitle" data-i18n="clear_title">Очистить счёт?</h2>
+    </div>
+    <div class="sheet__body">
+      <p class="confirm__text" id="confirmText" data-i18n="clear_text"></p>
+    </div>
+    <div class="sheet__foot confirm__actions">
+      <button type="button" class="btn btn--ghost" data-close data-i18n="cancel">Отмена</button>
+      <button type="button" class="btn btn--danger-solid" id="confirmYes" data-i18n="clear_yes">Очистить</button>
+    </div>
+  </div>
+</div>
+
+<div class="top-sentinel" id="topSentinel" aria-hidden="true"></div>
+</body>
+</html>
