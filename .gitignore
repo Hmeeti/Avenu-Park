@@ -1,4 +1,7 @@
 assets/food/_originals/
+assets/food/_incoming/
+assets/food/_unmatched/
+assets/food/_other/
 __pycache__/
 .DS_Store
 Thumbs.db

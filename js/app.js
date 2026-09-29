@@ -325,9 +325,12 @@
 
   /* Фото блюда. photo: 'coffee-latte' → WebP 480/960 + JPG; 'file.jpg' → только этот файл */
   function mediaHTML(it, eager, sizes) {
-    var p = it.photo;
-    if (!p) return '<div class="ph"></div>';
-    var alt = esc(L(it.name));
+    if (!it.photo) return '<div class="ph"></div>';
+    return photoHTML(it.photo, L(it.name), eager, sizes);
+  }
+
+  function photoHTML(p, altText, eager, sizes) {
+    var alt = esc(altText);
     var load = eager ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
     var img;
     if (/\.(jpe?g|png|webp)$/i.test(p)) {
@@ -788,8 +791,25 @@
     $('#dishTitle').textContent = L(it.name);
 
     var html = '';
-    if (it.photo) {
-      html += '<div class="dish__media">' + mediaHTML(it, true, '(min-width: 600px) 560px, 100vw') + '</div>';
+    var shots = it.photo ? [it.photo].concat(it.gallery || []) : [];
+    var sizes = '(min-width: 600px) 560px, 100vw';
+    if (shots.length > 1) {
+      var name = L(it.name);
+      html += '<div class="dish__media dish__gallery">' +
+        '<div class="gallery" tabindex="0" role="group" aria-label="' + esc(t('photos')) + '">' +
+        shots.map(function (p, i) {
+          var label = t('photo_n', { n: i + 1, total: shots.length });
+          return '<div class="gallery__slide" role="group" aria-label="' + esc(label) + '">' +
+            photoHTML(p, i ? name + ' — ' + label : name, i === 0, sizes) + '</div>';
+        }).join('') +
+        '</div><div class="gallery__dots">' +
+        shots.map(function (p, i) {
+          return '<button type="button" class="gallery__dot" data-action="gallery-go" data-i="' + i + '" aria-label="' +
+            esc(t('photo_n', { n: i + 1, total: shots.length })) + '" aria-current="' + (i === 0) + '"></button>';
+        }).join('') +
+        '</div></div>';
+    } else if (it.photo) {
+      html += '<div class="dish__media">' + mediaHTML(it, true, sizes) + '</div>';
     }
     html += '<p class="dish__cat">' + esc(L(c.name)) + '</p>' + tagsHTML(it);
     if (desc) html += '<p class="dish__desc">' + esc(desc) + '</p>';
@@ -821,7 +841,16 @@
     }
     $('#dishBody').innerHTML = html;
     markLoadedImages($('#dishBody'));
+    var strip = $('#dishBody .gallery');
+    if (strip) strip.addEventListener('scroll', syncGalleryDots, { passive: true });
     renderDishFoot();
+  }
+
+  function syncGalleryDots() {
+    var strip = $('#dishBody .gallery');
+    if (!strip || !strip.clientWidth) return;
+    var i = Math.round(strip.scrollLeft / strip.clientWidth);
+    $$('.gallery__dot', $('#dishBody')).forEach(function (d, k) { d.setAttribute('aria-current', String(k === i)); });
   }
 
   function renderDishFoot() {
@@ -1170,6 +1199,11 @@
         });
         renderDishFoot();
         break;
+      case 'gallery-go': {
+        var strip = $('#dishBody .gallery');
+        if (strip) strip.scrollTo({ left: strip.clientWidth * (Number(a.getAttribute('data-i')) || 0), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+        break;
+      }
       case 'dish-inc': dish.q = Math.min(MAX_QTY, dish.q + 1); renderDishFoot(); break;
       case 'dish-dec': dish.q = Math.max(1, dish.q - 1); renderDishFoot(); break;
       case 'dish-add': {
