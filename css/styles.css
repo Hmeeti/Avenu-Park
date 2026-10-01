@@ -3,8 +3,8 @@
    ========================================================================== */
 
 :root {
-  --bg: #F6EFE2;
-  --surface: #FFFBF3;
+  --bg: #FFFFFF;
+  --surface: #FAF6EE;
   --surface-2: #EDE2CF;
   --cappuccino: #A9805B;
   --cappuccino-d: #7A5A40;
@@ -20,7 +20,7 @@
   --danger: #A2412F;
   --shadow: 0 1px 2px rgba(92, 64, 38, .06), 0 6px 18px rgba(92, 64, 38, .07);
   --shadow-lg: 0 -8px 30px rgba(58, 46, 36, .16);
-  --topbar-bg: rgba(246, 239, 226, .86);
+  --topbar-bg: rgba(255, 255, 255, .88);
   --backdrop: rgba(43, 34, 26, .45);
   --skeleton: linear-gradient(100deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.45) 50%, rgba(255,255,255,0) 70%);
 
@@ -285,6 +285,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 }
 .hero__logo { margin: 0 auto 14px; width: 220px; }
 .hero__logo picture { display: block; }
+.hero__logo .hero__logo-dark, [data-theme="dark"] .hero__logo .hero__logo-light { display: none; }
+[data-theme="dark"] .hero__logo .hero__logo-dark { display: block; }
 .hero__logo img { display: block; width: 100%; height: auto; aspect-ratio: 760 / 636; }
 .hero__title {
   margin: 0 0 8px;

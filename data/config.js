@@ -5,7 +5,7 @@ window.APP_CONFIG = {
   city: 'Тараз',
   address: '',                       // TODO: точный адрес
   mapUrl: '',                        // TODO: ссылка на 2ГИС / Google Maps; пусто = ссылка «Карта» скрыта
-  phones: ['+7 (776) 425-50-50'],
+  phones: ['+7 (700) 425-05-50'],
   instagram: 'https://www.instagram.com/parkavenue.coffee',
   instagramHandle: '@parkavenue.coffee',
   website: 'parkavenue.coffee',

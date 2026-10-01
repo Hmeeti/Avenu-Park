@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Park Avenue Hotel &amp; Cafe — Меню</title>
 <meta name="description" content="Электронное меню Park Avenue Hotel &amp; Cafe в Таразе: завтраки, салаты, горячие блюда, пицца, суши, кофе и напитки. Цены в тенге, на русском, казахском и английском языках.">
-<meta name="theme-color" content="#F6EFE2" id="themeColor">
+<meta name="theme-color" content="#FFFFFF" id="themeColor">
 <meta name="color-scheme" content="light dark">
 
 <meta property="og:type" content="website">
@@ -40,12 +40,10 @@
       theme = JSON.parse(localStorage.getItem('pa_theme'));
       lang = JSON.parse(localStorage.getItem('pa_lang')) || 'ru';
     } catch (e) {}
-    if (theme !== 'light' && theme !== 'dark') {
-      theme = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    if (theme !== 'light' && theme !== 'dark') theme = 'light';
     d.setAttribute('data-theme', theme);
     if (lang === 'kk' || lang === 'en') d.setAttribute('lang', lang);
-    document.getElementById('themeColor').setAttribute('content', theme === 'dark' ? '#1E2117' : '#F6EFE2');
+    document.getElementById('themeColor').setAttribute('content', theme === 'dark' ? '#1E2117' : '#FFFFFF');
     /* Манифест подключаем только по http(s): при открытии файла с диска браузер ругается в консоль. */
     if (/^https?:$/.test(location.protocol)) {
       var m = document.createElement('link');
@@ -120,9 +118,13 @@
 
 <section class="hero" id="top">
   <h1 class="hero__logo">
-    <picture>
-      <source type="image/webp" srcset="./assets/logo/logo-full-grey.webp">
-      <img src="./assets/logo/logo-full-grey.png" alt="Park Avenue Hotel &amp; Cafe" width="760" height="636" fetchpriority="high">
+    <picture class="hero__logo-light">
+      <source type="image/webp" srcset="./assets/logo/logo-full-green-light.webp">
+      <img src="./assets/logo/logo-full-green-light.png" alt="Park Avenue Hotel &amp; Cafe" width="760" height="636" fetchpriority="high">
+    </picture>
+    <picture class="hero__logo-dark">
+      <source type="image/webp" srcset="./assets/logo/logo-full-green-dark.webp">
+      <img src="./assets/logo/logo-full-green-dark.png" alt="Park Avenue Hotel &amp; Cafe" width="760" height="636" loading="lazy">
     </picture>
   </h1>
   <p class="hero__title" id="welcomeTitle">Добро пожаловать в Park Avenue</p>

@@ -9,7 +9,7 @@
 
   var LANGS = ['ru', 'kk', 'en'];
   var LANG_CODES = { ru: 'RU', kk: 'KZ', en: 'EN' };
-  var THEME_COLORS = { light: '#F6EFE2', dark: '#1E2117' };
+  var THEME_COLORS = { light: '#FFFFFF', dark: '#1E2117' };
   /* Чисто текстовые категории — компактный вид без блока фото */
   var COMPACT = { sides: 1, sauces: 1, extras: 1, tea: 1, crafttea: 1, bread: 1 };
   var TAGS = ['hit', 'new', 'veg', 'spicy', 'halal'];
@@ -39,7 +39,7 @@
   /* ---------- Состояние ---------- */
   var state = {
     lang: 'ru',
-    theme: null,           // 'light' | 'dark' | null — следовать системе
+    theme: null,           // 'light' | 'dark' | null — светлая по умолчанию, пока гость не выбрал сам
     group: 'kitchen',
     searchOpen: false,
     query: '',
@@ -236,8 +236,7 @@
   }
 
   function currentTheme() {
-    if (state.theme) return state.theme;
-    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return state.theme || 'light';
   }
   function applyTheme() {
     var th = currentTheme();
@@ -1225,13 +1224,6 @@
     el.themeBtn.addEventListener('click', function () {
       setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
     });
-    if (window.matchMedia) {
-      var mq = matchMedia('(prefers-color-scheme: dark)');
-      var onSystem = function () { if (!state.theme) applyTheme(); };
-      if (mq.addEventListener) mq.addEventListener('change', onSystem);
-      else if (mq.addListener) mq.addListener(onSystem);
-    }
-
     el.searchOpen.addEventListener('click', openSearch);
     $('#searchCancel').addEventListener('click', closeSearch);
     el.searchInput.addEventListener('input', function () {
